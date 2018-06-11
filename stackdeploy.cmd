@@ -1,0 +1,1 @@
+docker stack deploy cicd -c docker-compose.yml
