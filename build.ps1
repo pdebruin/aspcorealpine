@@ -1,1 +1,1 @@
-docker build -t aspcorealpine .
+docker build -t pdebruin/aspcorealpine .
