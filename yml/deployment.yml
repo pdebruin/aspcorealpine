@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: aspcorealpine-deployment
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: aspcorealpine
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: aspcorealpine-container
-        image: "dtr.dckr.it/pdebruin/aspcorealpine"
+        image: "dtr.dckr.it/pdebruin/aspcorealpine:238"
         ports:
         - containerPort: 80
