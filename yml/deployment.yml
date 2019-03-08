@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: aspcorealpine-container
-        image: "dtr.dckr.it/pdebruin/aspcorealpine:238"
+        image: "pdebruin/aspcorealpine"
         ports:
         - containerPort: 80
