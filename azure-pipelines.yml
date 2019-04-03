@@ -6,8 +6,8 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'Ubuntu-16.04'
+pool: linuxbuild
+#  vmImage: 'Ubuntu-16.04'
 
 variables:
   imageName: 'your-container-image-name:$(build.buildId)'
