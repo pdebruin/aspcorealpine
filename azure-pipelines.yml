@@ -10,7 +10,7 @@ pool: Default
 #  vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: 'your-container-image-name:$(build.buildId)'
+  imageName: 'pdebruin/aspcorealpine:$(build.buildId)'
 
 steps:
 - script: docker build -f dockerfile -t $(imageName) .
