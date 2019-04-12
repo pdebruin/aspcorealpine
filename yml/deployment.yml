@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: aspcorealpine-container
-        image: "pieterd.azurecr.io/pdebruin/aspcorealpine"
+        image: "pieterd.azurecr.io/pdebruin/aspcorealpine:latest"
         ports:
         - containerPort: 80
