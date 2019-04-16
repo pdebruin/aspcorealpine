@@ -1,7 +1,6 @@
 version: '3.3'
 services:
   aspcorealpine:
-#    image: dtr.dckr.it/pdebruin/aspcorealpine:233
     image: aspcorealpine
     build: aspcorealpine
     ports:
