@@ -13,5 +13,37 @@ variables:
   imageName: 'pdebruin/aspcorealpine:$(build.buildId)'
 
 steps:
-- script: docker build -f dockerfile -t $(imageName) .
-  displayName: 'docker build'
+#- script: docker build -f dockerfile -t $(imageName) .
+#  displayName: 'docker build'
+- task: Docker@0
+  displayName: 'Build an image'
+  inputs:
+    azureSubscription: 'Internal (1ba0c403-6df1-461d-a7bc-c5471edbd702)'
+    azureContainerRegistry: '{"loginServer":"pieterd.azurecr.io", "id" : "/subscriptions/1ba0c403-6df1-461d-a7bc-c5471edbd702/resourceGroups/devopsrg/providers/Microsoft.ContainerRegistry/registries/pieterd"}'
+    dockerFile: '**/dockerfile'
+    includeLatestTag: true
+- task: Docker@0
+  displayName: 'Push an image'
+  inputs:
+    azureSubscription: 'Internal (1ba0c403-6df1-461d-a7bc-c5471edbd702)'
+    azureContainerRegistry: '{"loginServer":"pieterd.azurecr.io", "id" : "/subscriptions/1ba0c403-6df1-461d-a7bc-c5471edbd702/resourceGroups/devopsrg/providers/Microsoft.ContainerRegistry/registries/pieterd"}'
+    action: 'Push an image'
+    includeLatestTag: true
+- task: Kubernetes@1
+  displayName: 'kubectl set'
+  inputs:
+    kubernetesServiceEndpoint: 201907asp
+    namespace: aspnetcore
+    command: set
+    arguments: 'image deployment/aspcorealpine-deployment aspcorealpine-container=pieterd.azurecr.io/$(Build.Repository.Name):$(Build.BuildId)'
+- task: Kubernetes@1
+  displayName: 'kubectl apply -f **/yml/deployment.yml'
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'Internal (1ba0c403-6df1-461d-a7bc-c5471edbd702)'
+    azureResourceGroup: aksrg201907
+    kubernetesCluster: aks201907
+    namespace: aspnetcore
+    command: apply
+    arguments: '-f ./yml/deployment.yml'
+
