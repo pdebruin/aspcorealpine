@@ -3,6 +3,7 @@ WORKDIR /app
 
 COPY *.sln .
 COPY aspcorealpine/*.csproj ./aspcorealpine/
+COPY NUnitTests/*.csproj ./NUnitTests/
 RUN dotnet restore
 
 COPY aspcorealpine/. ./aspcorealpine/
