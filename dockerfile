@@ -3,12 +3,14 @@ WORKDIR /app
 
 COPY *.sln .
 COPY aspcorealpine/*.csproj ./aspcorealpine/
-COPY NUnitTests/*.csproj ./NUnitTests/
+COPY NUnitTests/*.csproj ./NUnitTests/ 
 RUN dotnet restore
 
 COPY aspcorealpine/. ./aspcorealpine/
 WORKDIR /app/aspcorealpine
 RUN dotnet publish -c Release -o out
+
+RUN dotnet test
 
 FROM microsoft/dotnet:2.2-aspnetcore-runtime-alpine AS runtime
 WORKDIR /app
