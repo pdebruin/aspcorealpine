@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: aspcorealpine-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aspcorealpine
+  template:
+    metadata:
+      labels:
+        app: aspcorealpine
+    spec:
+      containers:
+      - name: aspcorealpine-container
+        image: "pieterd.azurecr.io/pdebruin/aspcorealpine:latest"
+        ports:
+        - containerPort: 80
