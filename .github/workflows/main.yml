@@ -6,7 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     
-    - uses: azure/docker-login@master #azure/container-actions/docker-login@master
+    - uses: azure/docker-login@v1 #azure/container-actions/docker-login@master
       with:
         login-server: pieterd.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME }}
