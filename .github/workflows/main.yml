@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-16.04 #ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     
     - uses: azure/container-actions/docker-login@master
       with:
@@ -20,8 +20,8 @@ jobs:
     - uses: azure/k8s-actions/aks-set-context@master
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        cluster-name: aks201907
-        resource-group: aksrg201907
+        cluster-name: aks2004
+        resource-group: aksrg2004
         
     - uses: azure/k8s-actions/k8s-create-secret@master
       with:
