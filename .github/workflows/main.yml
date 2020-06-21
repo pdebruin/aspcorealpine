@@ -17,20 +17,20 @@ jobs:
         docker push pieterd.azurecr.io/pdebruin/aspcorealpine:${{ github.sha }}
       
     # Set the target AKS cluster. 
-    - uses: azure/aks-set-context@master #azure/k8s-actions/aks-set-context@master
+    - uses: azure/aks-set-context@v1 #azure/k8s-actions/aks-set-context@master
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
         cluster-name: aks2004
         resource-group: aksrg2004
         
-    - uses: azure/k8s-create-secret@master #azure/k8s-actions/k8s-create-secret@master
+    - uses: azure/k8s-create-secret@v1 #azure/k8s-actions/k8s-create-secret@master
       with:
         container-registry-url: pieterd.azurecr.io
         container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
         container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
         secret-name: aks201907-secret
 
-    - uses: azure/k8s-actions/k8s-deploy@master
+    - uses: azure/k8s-deploy@v1 #azure/k8s-actions/k8s-deploy@master
       with:
         namespace: 'aspcorealpine'
         manifests: |
