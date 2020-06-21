@@ -16,7 +16,6 @@ jobs:
         docker build . -t pieterd.azurecr.io/pdebruin/aspcorealpine:${{ github.sha }}
         docker push pieterd.azurecr.io/pdebruin/aspcorealpine:${{ github.sha }}
       
-    # Set the target AKS cluster. 
     - uses: azure/aks-set-context@v1 #azure/k8s-actions/aks-set-context@master
       with:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
